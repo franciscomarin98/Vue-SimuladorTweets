@@ -1,10 +1,14 @@
 <template>
-  <h1>Simulador de Tweets</h1>
+  <MenuBar />
+  <TweetForm />
 </template>
 
 <script>
+import MenuBar from './components/MenuBar'
+import TweetForm from './components/TweetForm'
 export default {
-  name: 'App'
+  name: 'App',
+  components: { TweetForm, MenuBar }
 }
 </script>
 
