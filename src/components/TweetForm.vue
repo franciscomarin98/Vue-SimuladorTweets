@@ -1,9 +1,9 @@
 <template>
   <div class="tweet-form container" :class="{open: showForm}">
-    <form>
-      <input class="form-control" placeholder="Nombre" type="text">
-      <textarea class="form-control" rows="3" placeholder="Escribe tu tweet"></textarea>
-      <button type="button" class="btn btn-primary">
+    <form @submit.prevent="submitTweetForm">
+      <input v-model="userName" class="form-control" placeholder="Nombre" type="text">
+      <textarea v-model="userTweet" class="form-control" rows="3" placeholder="Escribe tu tweet"></textarea>
+      <button type="submit" class="btn btn-primary">
         Enviar tweet
       </button>
     </form>
@@ -11,10 +11,25 @@
 </template>
 
 <script>
+import { ref } from 'vue'
+
 export default {
   name: 'TweetForm',
   props: {
     showForm: Boolean
+  },
+  setup () {
+    const userName = ref('')
+    const userTweet = ref('')
+    const submitTweetForm = () => {
+      console.log('Enviado...', userTweet.value, userName.value)
+    }
+
+    return {
+      submitTweetForm,
+      userTweet,
+      userName
+    }
   }
 }
 </script>
