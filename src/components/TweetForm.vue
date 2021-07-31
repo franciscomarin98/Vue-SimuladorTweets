@@ -12,6 +12,7 @@
 
 <script>
 import { ref } from 'vue'
+import { saveTweetAPI } from '../api/tweet'
 
 export default {
   name: 'TweetForm',
@@ -21,8 +22,9 @@ export default {
   setup () {
     const userName = ref('')
     const userTweet = ref('')
+
     const submitTweetForm = () => {
-      console.log('Enviado...', userTweet.value, userName.value)
+      saveTweetAPI(userTweet.value, userName.value)
     }
 
     return {
