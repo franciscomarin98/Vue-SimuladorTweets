@@ -17,14 +17,22 @@ import { saveTweetAPI } from '../api/tweet'
 export default {
   name: 'TweetForm',
   props: {
-    showForm: Boolean
+    showForm: Boolean,
+    openForm: Function,
+    reloadTweets: Function
   },
-  setup () {
+  setup (props) {
     const userName = ref('')
     const userTweet = ref('')
 
     const submitTweetForm = () => {
-      saveTweetAPI(userTweet.value, userName.value)
+      if (userName.value && userTweet.value) {
+        saveTweetAPI(userTweet.value, userName.value)
+        userName.value = ''
+        userTweet.value = ''
+        props.reloadTweets()
+        props.openForm()
+      }
     }
 
     return {

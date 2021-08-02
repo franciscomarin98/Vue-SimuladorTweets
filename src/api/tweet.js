@@ -15,4 +15,4 @@ export const saveTweetAPI = (tweet, userName) => {
   localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(tweets))
 }
 
-export const getTweetsAPI = () => JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY)) || []
+export const getTweetsAPI = () => JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY))?.reverse() || []

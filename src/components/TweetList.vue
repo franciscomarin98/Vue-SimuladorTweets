@@ -1,17 +1,20 @@
 <template>
   <div class="container">
     <h1 class="text-center mb-4">Lista de Tweets</h1>
-    <div class="tweet">
-      <p class="tweet__title">UserName</p>
-      <p class="tweet__text">Tweet Mensaje...</p>
-      <span>01/01/2020</span>
+    <div class="tweet" v-for="item in listaTweets" :key="item.id">
+      <p class="tweet__title">{{ item.userName }}</p>
+      <p class="tweet__text">{{item.tweet}}</p>
+      <span>{{item.createdAt}}</span>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'TweetList'
+  name: 'TweetList',
+  props: {
+    listaTweets: Array
+  }
 }
 </script>
 
