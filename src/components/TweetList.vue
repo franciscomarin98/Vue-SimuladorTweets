@@ -3,17 +3,33 @@
     <h1 class="text-center mb-4">Lista de Tweets</h1>
     <div class="tweet" v-for="item in listaTweets" :key="item.id">
       <p class="tweet__title">{{ item.userName }}</p>
-      <p class="tweet__text">{{item.tweet}}</p>
-      <span>{{item.createdAt}}</span>
+      <p class="tweet__text">{{ item.tweet }}</p>
+      <span>{{ formatDate(item.createdAt) }}</span>
+      <CloseIcon/>
     </div>
   </div>
 </template>
 
 <script>
+import moment from 'moment'
+import { CloseIcon } from './Icons'
+
 export default {
   name: 'TweetList',
   props: {
     listaTweets: Array
+  },
+  components: {
+    CloseIcon
+  },
+  setup () {
+    const formatDate = (date) => {
+      return moment(date).fromNow()
+    }
+
+    return {
+      formatDate
+    }
   }
 }
 </script>

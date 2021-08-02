@@ -34,5 +34,13 @@ export default {
 </script>
 
 <style lang="scss">
+svg {
+  width: 20px;
+  height: 20px;
 
+  &:hover {
+    cursor: pointer;
+    color: red;
+  }
+}
 </style>
