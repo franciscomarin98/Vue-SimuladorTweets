@@ -5,7 +5,11 @@
       <p class="tweet__title">{{ item.userName }}</p>
       <p class="tweet__text">{{ item.tweet }}</p>
       <span>{{ formatDate(item.createdAt) }}</span>
-      <CloseIcon/>
+      <CloseIcon @click="deleteTweet(item.id)"/>
+    </div>
+
+    <div class="tweet" v-show="listaTweets.length <= 0">
+        No hay tweets posteados
     </div>
   </div>
 </template>
@@ -13,22 +17,30 @@
 <script>
 import moment from 'moment'
 import { CloseIcon } from './Icons'
+import { deletedTweetAPIS } from '../api/tweet'
 
 export default {
   name: 'TweetList',
   props: {
-    listaTweets: Array
+    listaTweets: Array,
+    reloadTweets: Function
   },
   components: {
     CloseIcon
   },
-  setup () {
+  setup (props) {
     const formatDate = (date) => {
       return moment(date).fromNow()
     }
 
+    const deleteTweet = (id) => {
+      deletedTweetAPIS(id)
+      props.reloadTweets()
+    }
+
     return {
-      formatDate
+      formatDate,
+      deleteTweet
     }
   }
 }

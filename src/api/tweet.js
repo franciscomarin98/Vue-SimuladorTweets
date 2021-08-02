@@ -16,3 +16,9 @@ export const saveTweetAPI = (tweet, userName) => {
 }
 
 export const getTweetsAPI = () => JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY))?.reverse() || []
+
+export const deletedTweetAPIS = (idTweet) => {
+  let tweets = getTweetsAPI()
+  tweets = tweets.filter(tw => tw.id !== idTweet)
+  localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(tweets))
+}
